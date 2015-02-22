@@ -1,0 +1,171 @@
+<html ng-app>
+<head>
+    <title>Bowling Score Card</title>
+    <script type="text/javascript"
+        src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <style>
+        center {
+            text-align: center;
+            align-content: center;
+        }
+
+        input {
+            padding: 0px;
+            border: none;
+            align-content: center;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0px;
+        }
+        
+        th, td, tr {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 10px;
+        } 
+
+        series, series, series {
+            border: 0px solid grey;
+            padding: 0px;
+            border-collapse: collapse;
+        }
+
+        score {
+            padding: 0px;
+            border-collapse: collapse;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #f1f1f1;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div ng-app="" ng-controller="framesController">
+        <table class="series">
+            <tr class="series">
+                <td ng-repeat="frame in frames.slice(0,9)" colspan="2" class="series">
+                    <table>
+                        <tr>
+                            <th colspan="2" class="center">{{frame.frame + 1}}</th>
+                        </tr>
+                        <tr class="score">
+                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frame.one" /></td>
+                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frame.two" /></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="center">{{frame.score}}</th>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="3" class="series">
+                    <table>
+                        <tr>
+                            <th colspan="3" class="center">{{frames[9].frame + 1}}</th>
+                        </tr>
+                        <tr class="score">
+                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].one" /></td>
+                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].two" /></td>
+                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].extra" /></td>
+                        </tr>
+                        <tr>
+                            <th colspan="3" class="center">{{frames[9].score}}</th>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+        function framesController($scope) {
+            var frames = [];
+            for (var i = 0; i < 10; i++) {
+                var frame = { frame: i, one: 0, two: 0, extra: 0, score: 0 };
+                frames.push(frame);
+            }
+            frames[0].one = 9;
+            frames[0].two = '/';
+            $scope.frames = frames;
+
+            $scope.calculateScore = function () {
+                var frames = [12];
+                frames[10].one = 0;
+                frames[10].two = 0;
+                frames[11].one = 0;
+                frames[11].two = 0;
+                for (i = 0; i < 9; i++) {
+                    if ($scope.frames[i].one.toLowerCase() == 'x' || $scope.frames[i].two.toLowerCase() == 'x') {
+                        frames[i].one = 10;
+                        frames[i].two = 0;
+                    }
+                    else if ($scope.frames[i].two == '/') {
+                        frames[i].two = 10 - $scope.frames[i].one;
+                    }
+                    else {
+                        frames[i].one = $scope.frames[i].one;
+                        frames[i].two = $scope.frames[i].two;
+                    }
+                }
+                if ($scope.frames[9].one.toLowerCase() == 'x') {
+                    frames[9].one = 10;
+                    if ($scope.frames[9].two.toLowerCase() == 'x') {
+                        frames[10].one = 10;
+                        frames[11].one = $scope.frames[9].extra;
+                    } else {
+                        frames[10].one = $scope.frames[9].two;
+                        if ($scope.frames[9].extra == '/') {
+                            frames[10].two = 10 - $scope.frames[9].two;
+                        } else {
+                            frames[10].two = $scope.frames[9].extra;
+                        }
+                    }
+                }
+                else if ($scope.frames[9].two == '/') {
+                    frames[9].two = 10 - frames[9].one;
+                }
+                else {
+                    frames[i].one = $scope.frames[i].one;
+                    frames[i].two = $scope.frames[i].two;
+                }
+
+                var frameScore = [];
+
+                // Calc Frame scores
+                for (i = 0; i < $scope.frames.length; i++) {
+                    frameScore[i] = frames[i].one + frames[i].two;
+                    // Strike
+                    if (frames[i].one == 10) {
+                        frameScore[i] += frames[i + 1].one + frameScore[i + 1].two;
+                        if (frames[i + 1].one == 10) {
+                            frameScore[i] += frames[i + 2].one;
+                        }
+                    }
+                        // Spare
+                    else if (frames[i].one + frames[i].two == 10) {
+                        frameScore[i] += frames[i + 1].one;
+                    }
+                }
+
+                var totalScore = 0;
+                for (i = 0; i < $scope.frames.length; i++) {
+                    totalScore += frameScore[i];
+                    $scope.frames[i].score = totalScore;
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>
