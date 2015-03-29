@@ -1,0 +1,8 @@
+*.dll
+*.suo
+*.pdb
+*.dll.config
+*.FileListAbsolute.txt
+*.csprojResolveAssemblyReference.cache
+*DesignTimeResolveAssemblyReferencesInput.cache
+TemporaryGeneratedFile*.cs
