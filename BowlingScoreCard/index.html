@@ -10,7 +10,7 @@
         }
 
         input {
-            padding: 0px;
+            padding: 5px;
             border: none;
             align-content: center;
             text-align: center;
@@ -24,17 +24,23 @@
         th, td, tr {
             border: 1px solid grey;
             border-collapse: collapse;
-            padding: 10px;
+            padding: 5px;
         } 
 
-        series, series, series {
-            border: 0px solid grey;
+        table.series, table.series tr, table.series td {
+            border: 1px solid grey;
             padding: 0px;
+            border-spacing: 0px;
             border-collapse: collapse;
         }
 
-        score {
-            padding: 0px;
+        table.frame {
+            border: 1px solid grey;
+            border-collapse: collapse;
+        }
+
+        table.score, table.score tr, table.score td {
+            padding: 5px;
             border-collapse: collapse;
         }
 
@@ -54,13 +60,13 @@
         <table class="series">
             <tr class="series">
                 <td ng-repeat="frame in frames.slice(0,9)" colspan="2" class="series">
-                    <table>
+                    <table class="frame">
                         <tr>
                             <th colspan="2" class="center">{{frame.frame + 1}}</th>
                         </tr>
                         <tr class="score">
-                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frame.one" /></td>
-                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frame.two" /></td>
+                            <td colspan="1" class="score;center"><input class="center;score" ng-change='calculateScore()' size="1" type="text" ng-model="frame.one" /></td>
+                            <td colspan="1" class="score;center"><input class="center;score" ng-change='calculateScore()' size="1" type="text" ng-model="frame.two" /></td>
                         </tr>
                         <tr>
                             <th colspan="2" class="center">{{frame.score}}</th>
@@ -68,14 +74,14 @@
                     </table>
                 </td>
                 <td colspan="3" class="series">
-                    <table>
+                    <table class="frame">
                         <tr>
                             <th colspan="3" class="center">{{frames[9].frame + 1}}</th>
                         </tr>
                         <tr class="score">
-                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].one" /></td>
-                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].two" /></td>
-                            <td colspan="1" class="center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].extra" /></td>
+                            <td colspan="1" class="score;center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].one" /></td>
+                            <td colspan="1" class="score;center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].two" /></td>
+                            <td colspan="1" class="score;center"><input class="center;score;score-font" ng-change='calculateScore()' size="1" type="text" ng-model="frames[9].extra" /></td>
                         </tr>
                         <tr>
                             <th colspan="3" class="center">{{frames[9].score}}</th>
