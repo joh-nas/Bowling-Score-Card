@@ -6,3 +6,4 @@
 *.csprojResolveAssemblyReference.cache
 *DesignTimeResolveAssemblyReferencesInput.cache
 TemporaryGeneratedFile*.cs
+*.csproj.user
