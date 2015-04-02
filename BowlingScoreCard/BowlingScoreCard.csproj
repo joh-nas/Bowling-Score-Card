@@ -57,8 +57,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FramesController.js" />
+    <Content Include="framesController.js" />
     <Content Include="index.html" />
+    <Content Include="mystyle.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
