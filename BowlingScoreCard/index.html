@@ -18,11 +18,11 @@
                         <tr class="score">
                             <td colspan="1" class="score;center">
                                 <input class="center;score" ng-change='calculateScore(frame)'
-                                       size="1" type="text" ng-model="frame.one" />
+                                       size="1" type="text" ng-model="frame.one" maxlength="1" onkeyup="validateInputOne(this)" />
                             </td>
                             <td colspan="1" class="score;center">
                                 <input class="center;score" ng-change='calculateScore(frame)'
-                                       size="1" type="text" ng-model="frame.two" />
+                                       size="1" type="text" ng-model="frame.two" maxlength="1" onkeyup="validateInputTwo(this)" />
                             </td>
                         </tr>
                         <tr>
@@ -38,15 +38,15 @@
                         <tr class="score">
                             <td colspan="1" class="score;center">
                                 <input class="center;score;score-font"
-                                       ng-change='calculateScore(allFrames[9])' size="1" type="text" ng-model="allFrames[9].one" />
+                                       ng-change='calculateScore(allFrames[9])' size="1" type="text" ng-model="allFrames[9].one" maxlength="1" onkeyup="validateInputOne(event)" />
                             </td>
                             <td colspan="1" class="score;center">
                                 <input class="center;score;score-font"
-                                       ng-change='calculateScore(allFrames[9])' size="1" type="text" ng-model="allFrames[9].two" />
+                                       ng-change='calculateScore(allFrames[9])' size="1" type="text" ng-model="allFrames[9].two" maxlength="1" onkeyup="validateInputExtra(this)" />
                             </td>
                             <td colspan="1" class="score;center">
                                 <input class="center;score;score-font"
-                                       ng-change='calculateScore(allFrames[9])' size="1" type="text" ng-model="allFrames[9].extra" />
+                                       ng-change='calculateScore(allFrames[9])' size="1" type="text" ng-model="allFrames[9].extra" maxlength="1" onkeyup="validateInputExtra(this)" />
                             </td>
                         </tr>
                         <tr>
