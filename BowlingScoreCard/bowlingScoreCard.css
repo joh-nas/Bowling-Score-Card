@@ -1,0 +1,58 @@
+﻿table, th, td
+{
+	border: 2px solid;
+	border-collapse: collapse;
+}
+
+th {
+    background-color: #f1f1f1;
+}
+.nameCol {
+	width: 150px;
+	text-align: center;
+}
+
+.totalCol {
+	width: 150px;
+	text-align: center;
+}
+
+.totalText {
+    background-color: #f1f1f1;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.nameText {
+    background-color: #f1f1f1;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.maxCol {
+	width: 150px;
+	text-align: center;
+}
+
+.frame {
+	height: 18px;
+	width: 40px;
+	text-align: center;
+}
+
+.frameTotal {
+    background-color: #f1f1f1;
+	text-align: center;
+	height: 18px;
+}
+
+th, td, thead, tbody{
+	padding: 5px 10px 5px 10px;
+}
+
+input {
+    padding: 5px;
+    border: none;
+    align-content: center;
+    text-align: center;
+}

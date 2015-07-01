@@ -105,7 +105,7 @@
     <Content Include="framesController.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
-    <Content Include="mystyle.css" />
+    <Content Include="bowlingScoreCard.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

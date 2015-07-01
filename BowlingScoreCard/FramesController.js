@@ -1,40 +1,20 @@
 ﻿var app = angular.module('BowlingScoreCard', []);
 app.controller('FramesController', function ($scope, $http) {
 
-    // First call to the api controller ...
-    $http.get('http://localhost:4482/api/score')
-        .success(function (data) {
-            $scope.apiData = data;
-        })
-        .error();
-
     var allFrames = [];
-    var firstFrames = [];
     for (var i = 0; i < 10; i++) {
         var frame = { frame: i, one: "", two: "", extra: "", score: "" };
         allFrames.push(frame);
-        if (i < 9) {
-            firstFrames.push(frame);
-        }
     }
     allFrames[0].one = 9;
     allFrames[0].two = '/';
+    allFrames[0].score = 19;
     allFrames[1].one = 9;
     allFrames[1].two = '/';
     $scope.allFrames = allFrames;
-    $scope.firstFrames = firstFrames;
-    //calculateScore();
 
     validateInputOne = function (e) {
         if (/([1-9xX/-])/.test(e.value)) {
-            return true;
-        }
-        e.value = '';
-        return false;
-    }
-
-    validateInputTwo = function (e) {
-        if (/([1-9\-\/])/.test(e.value)) {
             return true;
         }
         e.value = '';
@@ -58,6 +38,13 @@ app.controller('FramesController', function ($scope, $http) {
     }
 
     $scope.calculateScore = function (changedFrame) {
+        // First call to the api controller ...
+        //$http.get('http://localhost:4482/api/score')
+        //    .success(function (data) {
+        //        $scope.apiData = data;
+        //    })
+        //    .error();
+
         if (changedFrame.one === 0) {
             changedFrame.one = "-";
         }
