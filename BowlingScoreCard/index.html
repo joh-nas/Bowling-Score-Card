@@ -104,8 +104,8 @@
                     <input ng-change='calculateScore(allFrames[9])'
                            size="1" type="text" ng-model="allFrames[9].extra" maxlength="1" onkeyup="validateInputExtra(this)" />
                 </td>
-                <td rowspan="2" class="totalCol totalText">57</td>
-                <td rowspan="2" class="maxCol totalText">248</td>
+                <td rowspan="2" class="totalCol totalText">{{allFrames[9].score}}</td>
+                <td rowspan="2" class="maxCol totalText"></td>
             </tr>
             <tr>
                 <td ng-repeat="frame in allFrames | limitTo:9" colspan="2" class="series frameTotal">
