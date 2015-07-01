@@ -12,8 +12,8 @@ app.controller('FramesController', function ($scope, $http) {
     allFrames[1].one = 9;
     allFrames[1].two = '/';
     $scope.allFrames = allFrames;
-
-    validateInputOne = function (e) {
+    $scope.inputs = ['-', 1, 2, 3, 4, 5, 6, 7, 8, 9, '/', 'X'];
+    $scope.validateInputOne = function (e) {
         if (/([1-9xX/-])/.test(e.value)) {
             return true;
         }
@@ -21,7 +21,7 @@ app.controller('FramesController', function ($scope, $http) {
         return false;
     }
 
-    validateInputTwo = function (e) {
+    $scope.validateInputTwo = function (e) {
         if (/([1-9\-\/])/.test(e.value)) {
             return true;
         }
@@ -29,12 +29,16 @@ app.controller('FramesController', function ($scope, $http) {
         return false;
     }
 
-    validateInputExtra = function (e) {
+    $scope.validateInputExtra = function (e) {
         if (/([1-9\-xX\/])/.test(e.value)) {
             return true;
         }
         e.value = '';
         return false;
+    }
+
+    $scope.buttonClicked = function(e) {
+        var aik = e.value;
     }
 
     $scope.calculateScore = function (changedFrame) {

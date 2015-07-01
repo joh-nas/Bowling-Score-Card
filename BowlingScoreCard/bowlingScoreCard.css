@@ -34,24 +34,37 @@ th {
 	text-align: center;
 }
 
-.frame {
-	height: 18px;
-	width: 40px;
-	text-align: center;
-}
-
 .frameTotal {
     background-color: #f1f1f1;
 	text-align: center;
 	height: 18px;
 }
 
-th, td, thead, tbody{
-	padding: 5px 10px 5px 10px;
+.shotResult {
+    height: 50px;
+    width: 50px;
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.buttonDiv {
+    margin: 20px 100px 20px 100px;
+}
+
+.frame {
+    padding: 3px 0px 3px 0px;
+}
+
+.scoreHeader {
+    padding: 3px 0px 3px 0px;
+}
+
+.scoreFooter {
+    padding: 3px 0px 3px 0px;
 }
 
 input {
-    padding: 5px;
     border: none;
     align-content: center;
     text-align: center;
