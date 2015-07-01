@@ -1,5 +1,13 @@
 ﻿var app = angular.module('BowlingScoreCard', []);
-app.controller('FramesController', function ($scope) {
+app.controller('FramesController', function ($scope, $http) {
+
+    // First call to the api controller ...
+    $http.get('http://localhost:4482/api/score')
+        .success(function (data) {
+            $scope.apiData = data;
+        })
+        .error();
+
     var allFrames = [];
     var firstFrames = [];
     for (var i = 0; i < 10; i++) {
