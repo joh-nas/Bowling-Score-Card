@@ -13,32 +13,52 @@ app.controller('FramesController', function ($scope, $http) {
     allFrames[1].two = '/';
     $scope.allFrames = allFrames;
     $scope.inputs = ['-', 1, 2, 3, 4, 5, 6, 7, 8, 9, '/', 'X'];
-    $scope.validateInputOne = function (e) {
-        if (/([1-9xX/-])/.test(e.value)) {
-            return true;
+    //$scope.validateInputOne = function (e) {
+    //    if (/([1-9xX/-])/.test(e.value)) {
+    //        return true;
+    //    }
+    //    e.value = '';
+    //    return false;
+    //}
+
+    //$scope.validateInputTwo = function (e) {
+    //    if (/([1-9\-\/])/.test(e.value)) {
+    //        return true;
+    //    }
+    //    e.value = '';
+    //    return false;
+    //}
+
+    //$scope.validateInputExtra = function (e) {
+    //    if (/([1-9\-xX\/])/.test(e.value)) {
+    //        return true;
+    //    }
+    //    e.value = '';
+    //    return false;
+    //}
+
+    $scope.buttonClicked = function(shotResult) {
+        var frame = $scope.allFrames[$scope.selectedFrame];
+        if ($scope.selectedShot === 1) {
+            frame.one = shotResult;
+        } else if ($scope.selectedShot === 2) {
+            frame.two = shotResult;
+        } else if ($scope.selectedShot === 3 && $scope.selectedFrame === 9) {
+            frame.extra = shotResult;
+        } else {
+            return;
         }
-        e.value = '';
-        return false;
+        this.calculateScore(frame);
     }
 
-    $scope.validateInputTwo = function (e) {
-        if (/([1-9\-\/])/.test(e.value)) {
-            return true;
+    $scope.scoreFocus = function (frame, shot) {
+        if (frame === $scope.selectedFrame && shot === $scope.selectedShot) {
+            $scope.selectedFrame = -1;
+            $scope.selectedShot = -1;
+            return;
         }
-        e.value = '';
-        return false;
-    }
-
-    $scope.validateInputExtra = function (e) {
-        if (/([1-9\-xX\/])/.test(e.value)) {
-            return true;
-        }
-        e.value = '';
-        return false;
-    }
-
-    $scope.buttonClicked = function(e) {
-        var aik = e.value;
+        $scope.selectedFrame = frame;
+        $scope.selectedShot = shot;
     }
 
     $scope.calculateScore = function (changedFrame) {
@@ -49,14 +69,8 @@ app.controller('FramesController', function ($scope, $http) {
         //    })
         //    .error();
 
-        if (changedFrame.one === 0) {
-            changedFrame.one = "-";
-        }
-        if (changedFrame.two === 0) {
-            changedFrame.two = "-";
-        }
         if (changedFrame.frame !== 9
-            && (changedFrame.one.toString().toLowerCase() === 'x' || changedFrame.two.toString().toLowerCase() === 'x')) {
+            && (changedFrame.one.toString() === 'X' || changedFrame.two.toString() === 'X')) {
             changedFrame.one = "X";
             changedFrame.two = "";
         }
@@ -64,24 +78,17 @@ app.controller('FramesController', function ($scope, $http) {
             changedFrame.two = "/";
         }
         if (changedFrame.frame === 9) {
-            if (changedFrame.extra === 0) {
-                changedFrame.extra = "-";
-            }
             if (changedFrame.two === '/') {
-                if (changedFrame.extra.toString().toLowerCase() === 'x' || changedFrame.extra === '/') {
+                if (changedFrame.extra.toString() === 'X' || changedFrame.extra === '/') {
                     changedFrame.extra = 'X';
-                } else if (!isFinite(changedFrame.extra)) {
-                    changedFrame.extra = '-';
                 }
             }
-            if (changedFrame.one.toString().toLowerCase() === 'x') {
+            if (changedFrame.one.toString() === 'X') {
                 changedFrame.one = 'X';
-                if (changedFrame.two.toString().toLowerCase() === 'x') {
+                if (changedFrame.two.toString() === 'X') {
                     changedFrame.two = 'X';
-                    if (changedFrame.extra.toString().toLowerCase() === 'x' || changedFrame.extra === '/') {
+                    if (changedFrame.extra.toString() === 'X' || changedFrame.extra === '/') {
                         changedFrame.extra = 'X';
-                    } else if (!isFinite(changedFrame.extra)) {
-                        changedFrame.extra = '-';
                     }
                 } else if (isFinite(changedFrame.two) && isFinite(changedFrame.extra) && Number(changedFrame.two) + Number(changedFrame.extra) >= 10) {
                     changedFrame.extra = "/";
@@ -93,7 +100,7 @@ app.controller('FramesController', function ($scope, $http) {
             allFrames[i] = { one: 0, two: 0 };
         }
         for (i = 0; i < 9; i++) {
-            if ($scope.allFrames[i].one.toString().toLowerCase() === 'x' || $scope.allFrames[i].two.toString().toLowerCase() === 'x') {
+            if ($scope.allFrames[i].one.toString() === 'X' || $scope.allFrames[i].two.toString() === 'X') {
                 allFrames[i].one = 10;
                 allFrames[i].two = 0;
             } else if ($scope.allFrames[i].two === '/') {
@@ -119,11 +126,11 @@ app.controller('FramesController', function ($scope, $http) {
             }
         }
 
-        if ($scope.allFrames[9].one.toString().toLowerCase() === 'x') {
+        if ($scope.allFrames[9].one.toString() === 'X') {
             allFrames[9].one = 10;
-            if ($scope.allFrames[9].two.toString().toLowerCase() === 'x') {
+            if ($scope.allFrames[9].two.toString() === 'X') {
                 allFrames[10].one = 10;
-                if ($scope.allFrames[9].extra.toString().toLowerCase() === 'x') {
+                if ($scope.allFrames[9].extra.toString() === 'X') {
                     allFrames[11].one = 10;
                 } else {
                     if ($scope.allFrames[9].extra === '-' || $scope.allFrames[9].extra === '') {

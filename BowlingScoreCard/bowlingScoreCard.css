@@ -40,7 +40,7 @@ th {
 	height: 18px;
 }
 
-.shotResult {
+.shotResultBtn {
     height: 50px;
     width: 50px;
     font-weight: bold;
@@ -53,7 +53,9 @@ th {
 }
 
 .frame {
+    width:50px;
     padding: 3px 0px 3px 0px;
+    text-align: center;
 }
 
 .scoreHeader {
@@ -64,8 +66,7 @@ th {
     padding: 3px 0px 3px 0px;
 }
 
-input {
-    border: none;
-    align-content: center;
+.selectedCell {
+    background-color: lightgrey;
     text-align: center;
 }

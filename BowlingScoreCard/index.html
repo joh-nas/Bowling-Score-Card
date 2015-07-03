@@ -10,7 +10,7 @@
     <div ng-app="BowlingScoreCard" ng-controller="FramesController">
         <div class="buttonDiv">
             <span ng-repeat="i in inputs">
-                <button type="button" class="shotResult" ng-click="buttonClicked(i)">{{i}}</button>
+                <button type="button" class="shotResultBtn" ng-click="buttonClicked(i)">{{i}}</button>
             </span>
         </div>
         <table>
@@ -25,89 +25,68 @@
             </tr>
             <tr>
                 <td rowspan="2" class="nameCol nameText">Johan</td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[0])'
-                           size="1" type="text" ng-model="allFrames[0].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 0 && selectedShot == 1}" ng-click="scoreFocus(0, 1)">
+                    {{allFrames[0].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[0])'
-                           size="1" type="text" ng-model="allFrames[0].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 0 && selectedShot == 2}" ng-click="scoreFocus(0, 2)">
+                    {{allFrames[0].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[1])'
-                           size="1" type="text" ng-model="allFrames[1].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 1 && selectedShot == 1}" ng-click="scoreFocus(1, 1)">
+                    {{allFrames[1].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[1])'
-                           size="1" type="text" ng-model="allFrames[1].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 1 && selectedShot == 2}" ng-click="scoreFocus(1, 2)">
+                    {{allFrames[1].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[2])'
-                           size="1" type="text" ng-model="allFrames[2].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 2 && selectedShot == 1}" ng-click="scoreFocus(2, 1)">
+                    {{allFrames[2].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[2])'
-                           size="1" type="text" ng-model="allFrames[2].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 2 && selectedShot == 2}" ng-click="scoreFocus(2, 2)">
+                    {{allFrames[2].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[3])'
-                           size="1" type="text" ng-model="allFrames[3].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 3 && selectedShot == 1}" ng-click="scoreFocus(3, 1)">
+                    {{allFrames[3].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[3])'
-                           size="1" type="text" ng-model="allFrames[3].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 3 && selectedShot == 2}" ng-click="scoreFocus(3, 2)">
+                    {{allFrames[3].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[4])'
-                           size="1" type="text" ng-model="allFrames[4].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 4 && selectedShot == 1}" ng-click="scoreFocus(4, 1)">
+                    {{allFrames[4].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[4])'
-                           size="1" type="text" ng-model="allFrames[4].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 4 && selectedShot == 2}" ng-click="scoreFocus(4, 2)">
+                    {{allFrames[4].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[5])'
-                           size="1" type="text" ng-model="allFrames[5].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 5 && selectedShot == 1}" ng-click="scoreFocus(5, 1)">
+                    {{allFrames[5].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[5])'
-                           size="1" type="text" ng-model="allFrames[5].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 5 && selectedShot == 2}" ng-click="scoreFocus(5, 2)">
+                    {{allFrames[5].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[6])'
-                           size="1" type="text" ng-model="allFrames[6].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 6 && selectedShot == 1}" ng-click="scoreFocus(6, 1)">
+                    {{allFrames[6].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[6])'
-                           size="1" type="text" ng-model="allFrames[6].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 6 && selectedShot == 2}" ng-click="scoreFocus(6, 2)">
+                    {{allFrames[6].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[7])'
-                           size="1" type="text" ng-model="allFrames[7].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 7 && selectedShot == 1}" ng-click="scoreFocus(7, 1)">
+                    {{allFrames[7].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[7])'
-                           size="1" type="text" ng-model="allFrames[7].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 7 && selectedShot == 2}" ng-click="scoreFocus(7, 2)">
+                    {{allFrames[7].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[8])'
-                           size="1" type="text" ng-model="allFrames[8].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 8 && selectedShot == 1}" ng-click="scoreFocus(8, 1)">
+                    {{allFrames[8].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[8])'
-                           size="1" type="text" ng-model="allFrames[8].two" maxlength="1" onkeyup="validateInputTwo(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 8 && selectedShot == 2}" ng-click="scoreFocus(8, 2)">
+                    {{allFrames[8].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[9])'
-                           size="1" type="text" ng-model="allFrames[9].one" maxlength="1" onkeyup="validateInputOne(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 9 && selectedShot == 1}" ng-click="scoreFocus(9, 1)">
+                    {{allFrames[9].one}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[9])'
-                           size="1" type="text" ng-model="allFrames[9].two" maxlength="1" onkeyup="validateInputExtra(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 9 && selectedShot == 2}" ng-click="scoreFocus(9, 2)">
+                    {{allFrames[9].two}}
                 </td>
-                <td class="frame">
-                    <input ng-change='calculateScore(allFrames[9])'
-                           size="1" type="text" ng-model="allFrames[9].extra" maxlength="1" onkeyup="validateInputExtra(this)" />
+                <td class="frame" ng-class="{selectedCell:selectedFrame == 9 && selectedShot == 3}" ng-click="scoreFocus(9, 3)">
+                    {{allFrames[9].extra}}
                 </td>
                 <td rowspan="2" class="totalCol totalText">{{allFrames[9].score}}</td>
                 <td rowspan="2" class="maxCol totalText"></td>
