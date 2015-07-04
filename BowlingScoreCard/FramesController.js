@@ -29,6 +29,7 @@ app.controller('FramesController', function ($scope, $http) {
     }
 
     $scope.setNextShot = function (shotResult) {
+        if (shotResult === '') return;
         if ($scope.selectedShot === 1) {
             if (shotResult === 'X') {
                 if ($scope.selectedFrame !== 9) {
