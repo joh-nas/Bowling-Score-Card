@@ -6,39 +6,14 @@ app.controller('FramesController', function ($scope, $http) {
         var frame = { frame: i, one: "", two: "", extra: "", score: "" };
         allFrames.push(frame);
     }
-    allFrames[0].one = 9;
-    allFrames[0].two = '/';
-    allFrames[0].score = 19;
-    allFrames[1].one = 9;
-    allFrames[1].two = '/';
     $scope.allFrames = allFrames;
-    $scope.inputs = ['-', 1, 2, 3, 4, 5, 6, 7, 8, 9, '/', 'X'];
-    //$scope.validateInputOne = function (e) {
-    //    if (/([1-9xX/-])/.test(e.value)) {
-    //        return true;
-    //    }
-    //    e.value = '';
-    //    return false;
-    //}
+    $scope.inputs = ['-', 1, 2, 3, 4, 5, 6, 7, 8, 9, '/', 'X', 'Del'];
+    $scope.selectedFrame = 0;
+    $scope.selectedShot = 1;
 
-    //$scope.validateInputTwo = function (e) {
-    //    if (/([1-9\-\/])/.test(e.value)) {
-    //        return true;
-    //    }
-    //    e.value = '';
-    //    return false;
-    //}
-
-    //$scope.validateInputExtra = function (e) {
-    //    if (/([1-9\-xX\/])/.test(e.value)) {
-    //        return true;
-    //    }
-    //    e.value = '';
-    //    return false;
-    //}
-
-    $scope.buttonClicked = function(shotResult) {
+    $scope.buttonClicked = function (shotResult) {
         var frame = $scope.allFrames[$scope.selectedFrame];
+        if (shotResult === 'Del') { shotResult = ''; }
         if ($scope.selectedShot === 1) {
             frame.one = shotResult;
         } else if ($scope.selectedShot === 2) {
@@ -48,7 +23,44 @@ app.controller('FramesController', function ($scope, $http) {
         } else {
             return;
         }
+
+        this.setNextShot(shotResult);
         this.calculateScore(frame);
+    }
+
+    $scope.setNextShot = function (shotResult) {
+        if ($scope.selectedShot === 1) {
+            if (shotResult === 'X') {
+                if ($scope.selectedFrame !== 9) {
+                    $scope.selectedFrame++;
+                } else {
+                    $scope.selectedShot = 2;
+                }
+            } else {
+                $scope.selectedShot = 2;
+            }
+        } else if ($scope.selectedShot === 2) {
+            if ($scope.selectedFrame !== 9) {
+                $scope.selectedFrame++;
+                $scope.selectedShot = 1;
+            } else {
+                $scope.selectedShot = 3;
+            }
+        } else if ($scope.selectedShot === 3) {
+            $scope.selectedFrame = -1;
+            $scope.selectedShot = -1;
+        }
+    }
+
+    $scope.clearSeries = function () {
+        for(i = 0; i < 10; i++){
+            $scope.allFrames[i].one = '';
+            $scope.allFrames[i].two = '';
+            $scope.allFrames[i].extra = '';
+            $scope.selectedFrame = 0;
+            $scope.selectedShot = 1;
+            this.calculateScore($scope.allFrames[0]);
+        }
     }
 
     $scope.scoreFocus = function (frame, shot) {

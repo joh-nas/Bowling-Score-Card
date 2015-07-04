@@ -7,6 +7,7 @@
 th {
     background-color: #f1f1f1;
 }
+
 .nameCol {
 	width: 150px;
 	text-align: center;
@@ -15,6 +16,13 @@ th {
 .totalCol {
 	width: 150px;
 	text-align: center;
+}
+
+.clearButton{
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .totalText {
@@ -37,7 +45,7 @@ th {
 .frameTotal {
     background-color: #f1f1f1;
 	text-align: center;
-	height: 18px;
+    height: 26px;
 }
 
 .shotResultBtn {
@@ -48,6 +56,10 @@ th {
     margin-left: 20px;
 }
 
+.clearShotResultBtn {
+    width: auto;
+}
+
 .buttonDiv {
     margin: 20px 100px 20px 100px;
 }
@@ -56,6 +68,7 @@ th {
     width:50px;
     padding: 3px 0px 3px 0px;
     text-align: center;
+    height: 26px;
 }
 
 .scoreHeader {

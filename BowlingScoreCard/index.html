@@ -10,7 +10,7 @@
     <div ng-app="BowlingScoreCard" ng-controller="FramesController">
         <div class="buttonDiv">
             <span ng-repeat="i in inputs">
-                <button type="button" class="shotResultBtn" ng-click="buttonClicked(i)">{{i}}</button>
+                <button type="button" class="shotResultBtn" ng-class="{clearShotResultBtn: i == 'Del'}" ng-click="buttonClicked(i)">{{i}}</button>
             </span>
         </div>
         <table>
@@ -22,6 +22,7 @@
                 <th colspan="3" class="scoreHeader">10</th>
                 <th class="totalCol">Total</th>
                 <th class="maxCol">Max</th>
+                <th rowspan="3"><button type="button" class="clearButton" ng-click="clearSeries()">Clear</button></th>
             </tr>
             <tr>
                 <td rowspan="2" class="nameCol nameText">Johan</td>
